@@ -1,747 +1,817 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLOB | The Future of Hydration</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!DOCTYPE html>
+    <html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GLOB | The Future of Hydration</title>
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        aqua: {
-                            primary: '#00d4ff',
-                            dark: '#030712',
-                            glass: 'rgba(255, 255, 255, 0.02)',
-                            border: 'rgba(255, 255, 255, 0.08)',
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Plus Jakarta Sans', 'sans-serif'],
+                            display: ['Space Grotesk', 'sans-serif'],
+                        },
+                        colors: {
+                            aqua: {
+                                primary: '#00d4ff',
+                                dark: '#030712',
+                                glass: 'rgba(255, 255, 255, 0.02)',
+                                border: 'rgba(255, 255, 255, 0.08)',
+                            }
+                        },
+                        animation: {
+                            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                            'float': 'float 6s ease-in-out infinite',
                         }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
                     }
                 }
             }
+        </script>
+
+        <style>
+            :root {
+                --aqua-primary: #00d4ff;
+                --aqua-dark: #030712;
+                --india-saffron: #FF9933;
+                --india-green: #138808;
+                --aqua-glass: rgba(255, 255, 255, 0.05);
+            }
+
+            body {
+                background-color: var(--aqua-dark);
+                color: #ffffff;
+                overflow-x: hidden;
+                background-image: 
+                    radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 35%),
+                    radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.1) 0%, transparent 35%);
+            }
+
+            .india-gradient {
+                background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 800;
+            }
+
+            .blue-gradient-text {
+                background: linear-gradient(to bottom right, #67e8f9, #06b6d4, #2563eb) ;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            /* GLASS CARD HOVER EFFECTS */
+            .glass-card {
+                background: var(--aqua-glass);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+
+            .glass-card:hover {
+                border: 1px solid rgba(0, 212, 255, 0.4);
+                background: rgba(255, 255, 255, 0.08);
+                transform: translateY(-12px) scale(1.02);
+                box-shadow: 0 30px 60px rgba(0, 212, 255, 0.15);
+            }
+
+            /* NAVIGATION HOVER EFFECTS */
+            .nav-container {
+                transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                height: 70px;
+                overflow: visible;
+            }
+
+            .nav-container:hover {
+                background: rgba(255, 255, 255, 0.04);
+                border-color: rgba(0, 212, 255, 0.3);
+                transform: translateY(4px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 212, 255, 0.05);
+            }
+
+            .nav-link {
+                position: relative;
+                transition: color 0.3s ease;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                /* background: var(--aqua-primary); */
+                transition: width 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: var(--aqua-primary);
+            }
+
+            .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .progress-line {
+                position: fixed; top: 0; left: 0; height: 2px; 
+                background: linear-gradient(to bottom right, #67e8f9, #06b6d4, #2563eb); 
+                z-index: 1000; width: 0%;
+            }
+
+            #bubble-container {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+            }
+
+            .bubble {
+                position: absolute;
+                background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%);
+                border: 0.5px solid rgba(255,255,255,0.1);
+                border-radius: 50%;
+                bottom: -100px;
+            }
+
+            .section-label {
+                letter-spacing: 0.4em;
+                text-transform: uppercase;
+                font-size: 0.65rem;
+                font-weight: 800;
+                color: var(--aqua-primary);
+                display: inline-block;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            }
+
+            .dot {
+                width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15);
+                margin: 16px 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
+                position: relative;
+            }
+            .dot::after {
+                content: ''; position: absolute; inset: -4px; border: 1px solid transparent; 
+                border-radius: 50%; transition: 0.4s;
+            }
+            .dot.active { background: var(--aqua-primary); transform: scale(1.5); }
+            .dot.active::after { border-color: var(--aqua-primary); transform: scale(1.3); }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(2deg); }
+            }
+
+            .glow-button {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+            .glow-button::after {
+                content: '';
+                position: absolute;
+                top: -50%; left: -50%; width: 200%; height: 200%;
+                background: radial-gradient(circle, rgba(0,212,255,0.2) 0%, transparent 70%);
+                opacity: 0; transition: 0.3s;
+            }
+            .glow-button:hover::after { opacity: 1; }
+
+            .masked-text {
+                mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
+            }
+
+             .hero-blob {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle at 30% 30%, #00d4ff, #0055ff);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite, rotate 20s linear infinite;
+            filter: drop-shadow(0 0 60px rgba(0, 212, 255, 0.4));
         }
-    </script>
 
-    <style>
-        :root {
-            --aqua-primary: #00d4ff;
-            --aqua-dark: #030712;
-            --india-saffron: #FF9933;
-            --india-green: #138808;
-            --aqua-glass: rgba(255, 255, 255, 0.05);
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        body {
-            background-color: var(--aqua-dark);
-            color: #ffffff;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 35%),
-                radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.1) 0%, transparent 35%);
-        }
+        .parallax-wrap { perspective: 1000px; }
+        .parallax-card { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
 
-        .india-gradient {
-            background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        .blue-gradient-text {
-            background: linear-gradient(to bottom right, #67e8f9, #06b6d4, #2563eb) ;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* GLASS CARD HOVER EFFECTS */
-        .glass-card {
-            background: var(--aqua-glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .glass-card:hover {
-            border: 1px solid rgba(0, 212, 255, 0.4);
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.15);
-        }
-
-        /* NAVIGATION HOVER EFFECTS */
-        .nav-container {
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            height: 70px;
-            overflow: visible;
-        }
-
-        .nav-container:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(0, 212, 255, 0.3);
-            transform: translateY(4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 212, 255, 0.05);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            /* background: var(--aqua-primary); */
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--aqua-primary);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .progress-line {
-            position: fixed; top: 0; left: 0; height: 2px; 
-            background: linear-gradient(to bottom right, #67e8f9, #06b6d4, #2563eb); 
-            z-index: 1000; width: 0%;
-        }
-
-        #bubble-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
-        }
-
-        .bubble {
-            position: absolute;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%);
-            border: 0.5px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            bottom: -100px;
-        }
-
-        .section-label {
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            font-size: 0.65rem;
-            font-weight: 800;
-            color: var(--aqua-primary);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        .dot {
-            width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15);
-            margin: 16px 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
-            position: relative;
-        }
-        .dot::after {
-            content: ''; position: absolute; inset: -4px; border: 1px solid transparent; 
-            border-radius: 50%; transition: 0.4s;
-        }
-        .dot.active { background: var(--aqua-primary); transform: scale(1.5); }
-        .dot.active::after { border-color: var(--aqua-primary); transform: scale(1.3); }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .glow-button {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .glow-button::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(0,212,255,0.2) 0%, transparent 70%);
-            opacity: 0; transition: 0.3s;
-        }
-        .glow-button:hover::after { opacity: 1; }
-
-        .masked-text {
-            mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, white 50%, transparent 100%);
-        }
-        
-    </style>
-</head>
-<body class="antialiased font-sans selection:bg-aqua-primary/30">
-
-    <div id="bubble-container"></div>
-    <div class="progress-line" id="topProgress"></div>
-
-    <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-[100] px-6 py-8">
-        <div class="max-w-7xl mx-auto flex items-center justify-between bg-white/[0.01] backdrop-blur-2xl nav-container rounded-3xl px-8 py-4 shadow-2xl">
-            <div class="flex items-center gap-4 group cursor-pointer">
-    
-    <!-- Logo -->
-<div class="flex items-center gap-6 group cursor-pointer">
-    
-    <!-- Logo -->
-    <div class=" md:w-28 h-auto transition-transform duration-500 group-hover:scale-110" style="width: 150px; height: auto; margin-bottom: 2cqh;">
-        <img 
-            src="glob_logo2.png" 
-            alt="GLOB logo"
-            class="  drop-shadow-lg"
-        >
-    </div>
-
-</div>
-
-
-</div>
             
-            <div class="hidden lg:flex gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-white/40 ">
-                <a href="#vision" class="nav-link">Vision</a>
-                <a href="#india-first" class="nav-link">Pioneer</a>
-                <a href="#science" class="nav-link">Innovation</a>
-                <a href="#market" class="nav-link">Impact</a>
-                <a href="#roadmap" class="nav-link">Path</a>
-            </div>
+        </style>
+    </head>
+    <body class="antialiased font-sans selection:bg-aqua-primary/30">
 
-            <button class="glow-button bg-white text-black px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-aqua-primary hover:text-white hover:scale-105 active:scale-95 transition-all">
+        <div id="bubble-container"></div>
+        <div class="progress-line" id="topProgress"></div>
+
+        <!-- NAVIGATION -->
+       <nav class="fixed top-0 w-full z-[100] px-6 py-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between bg-white/[0.01] backdrop-blur-2xl nav-container rounded-3xl px-8 py-4 shadow-2xl">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-6 group cursor-pointer">
+            <div class="transition-transform duration-500 group-hover:scale-110" style="width:200px;">
+                <img src="j (4).png" alt="GLOB logo" class="w-full h-auto drop-shadow-lg">
+            </div>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-white/40">
+            <a href="#vision" class="nav-link">Vision</a>
+            <a href="#india-first" class="nav-link">Pioneer</a>
+            <a href="#science" class="nav-link">Innovation</a>
+            <a href="#market" class="nav-link">Impact</a>
+            <a href="#roadmap" class="nav-link">Path</a>
+        </div>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-4">
+
+            <!-- CTA (Hidden only on very small screens) -->
+            <button class="hidden sm:block glow-button bg-white text-black px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-aqua-primary hover:text-white hover:scale-105 active:scale-95 transition-all">
                 join revolution
             </button>
-        </div>
-    </nav>
 
-    <!-- SIDE NAV INDICATOR -->
-    <div class="fixed right-10 top-1/2 -translate-y-1/2 z-[100] hidden lg:block">
-        <div class="flex flex-col items-center">
-            <span class="text-[7px] font-black uppercase tracking-[0.3em] vertical-text mb-4 opacity-20 transform -rotate-90">Scroll</span>
-            <div class="dot active" data-target="#hero"></div>
-            <div class="dot" data-target="#vision"></div>
-            <div class="dot" data-target="#india-first"></div>
-            <div class="dot" data-target="#science"></div>
-            <div class="dot" data-target="#advantage"></div>
-            <div class="dot" data-target="#market"></div>
-            <div class="dot" data-target="#roadmap"></div>
-            <div class="dot" data-target="#founder"></div>
+            <!-- Hamburger -->
+            <button id="menuToggle" class="lg:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
         </div>
     </div>
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="min-h-screen relative flex items-center justify-center px-6 pt-20">
-        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-aqua-primary/5 rounded-full blur-[140px] -z-10 animate-pulse-slow"></div>
-        
-        <div class="max-w-6xl w-full text-center relative z-10">
-            <div class="reveal-up inline-flex items-center gap-4 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 mb-10">
-                <span class="text-[13px] font-black tracking-[0.2em] uppercase text-white/60">
-                    <span class="india-gradient">Manufacturing in India• Launching 2026</span> 
-                </span>
-                <span class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
-            </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="lg:hidden hidden mt-4 max-w-7xl mx-auto bg-white/[0.02] backdrop-blur-2xl border border-white/10 rounded-3xl px-8 py-8 space-y-6 shadow-2xl">
 
-            <h1 class="text-7xl md:text-[140px] font-display font-black leading-[0.75] tracking-tighter mb-10 reveal-up">
-                REDEFINING <br> 
-                <span class="blue-gradient-text uppercase">HYDRATION.</span>
-            </h1>
+        <a href="#vision" class="block nav-link text-sm font-black uppercase tracking-widest text-white/60">Vision</a>
+        <a href="#india-first" class="block nav-link text-sm font-black uppercase tracking-widest text-white/60">Pioneer</a>
+        <a href="#science" class="block nav-link text-sm font-black uppercase tracking-widest text-white/60">Innovation</a>
+        <a href="#market" class="block nav-link text-sm font-black uppercase tracking-widest text-white/60">Impact</a>
+        <a href="#roadmap" class="block nav-link text-sm font-black uppercase tracking-widest text-white/60">Path</a>
 
-            <div class="reveal-up space-y-4 mb-12">
-                <p class="text-[11px] font-black tracking-[0.5em] text-aqua-primary uppercase">The Future of Hydration</p>
-                <p class="text-white/40 text-lg md:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
-                    By <span class="text-white/80 font-medium italic">JEVAH</span>. 
-                    Eliminating the 500 billion plastic bottles through seaweed-based molecular packaging.
-                </p>
-            </div>
+        <button class="glow-button w-full bg-white text-black py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-aqua-primary hover:text-white transition-all">
+            join revolution
+        </button>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 reveal-up">
-                <button class="bg-aqua-primary text-black px-14 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] flex items-center gap-4 hover:shadow-[0_0_50px_rgba(0,212,255,0.4)] transition-all hover:-translate-y-1">
-                    Equity Inquiry <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </button>
-                <div class="text-left border-l border-white/10 pl-8 hidden sm:block">
-                    <span class="text-[8px] font-black tracking-widest text-white/30 uppercase block mb-1">Status</span>
-                    <span class="text-white font-display text-sm font-bold">R&D Completion • 2025</span>
-                </div>
+    </div>
+</nav>
+
+        <!-- SIDE NAV INDICATOR -->
+        <div class="fixed right-10 top-1/2 -translate-y-1/2 z-[100] hidden lg:block">
+            <div class="flex flex-col items-center">
+                <span class="text-[7px] font-black uppercase tracking-[0.3em] vertical-text mb-4 opacity-20 transform -rotate-90">Scroll</span>
+                <div class="dot active" data-target="#hero"></div>
+                <div class="dot" data-target="#vision"></div>
+                <div class="dot" data-target="#india-first"></div>
+                <div class="dot" data-target="#science"></div>
+                <div class="dot" data-target="#advantage"></div>
+                <div class="dot" data-target="#market"></div>
+                <div class="dot" data-target="#roadmap"></div>
+                <div class="dot" data-target="#founder"></div>
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
-            <i data-lucide="mouse" class="w-5 h-5"></i>
-        </div>
-    </section>
-
-    
-
-    <!-- VISION SECTION -->
-    <section id="vision" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row gap-20 items-end mb-24">
-                <div class="reveal-left lg:w-2/3">
-                    <p class="section-label mb-8">The Core Proposition</p>
-                    <h3 class="text-5xl md:text-8xl font-display font-black text-white leading-[0.8] uppercase tracking-tighter">Liquid Architecture <br><span class="blue-gradient-text">No Packaging.</span></h3>
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-screen relative flex items-center justify-center px-6 pt-20">
+            <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-aqua-primary/5 rounded-full blur-[140px] -z-10 animate-pulse-slow"></div>
+            
+            <div class="max-w-6xl w-full text-center relative z-10">
+                <div class="reveal-up inline-flex items-center gap-4 px-5 py-2.5 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 mb-10">
+                    <span class="text-[13px] font-black tracking-[0.2em] uppercase text-white/60">
+                        <span class="india-gradient">Manufacturing in India• Launching 2026</span> 
+                    </span>
+                    <span class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
                 </div>
-                <div class="reveal-right lg:w-1/3 pb-2">
-                    <p class="text-white/40 text-lg font-light leading-relaxed">
-                        GLOB is not a bottle alternative. It is a fundamental shift in how we perceive fluids. Natural, edible, and zero-waste.
+
+                <h1 class="text-7xl md:text-[140px] font-display font-black leading-[0.75] tracking-tighter mb-10 reveal-up">
+                    GLOB <br> 
+                    <span class="blue-gradient-text uppercase">BY JEVAH</span>
+                </h1>
+
+                <div class="reveal-up space-y-4 mb-12">
+                    <p class="text-[11px] font-black tracking-[0.5em] text-aqua-primary uppercase">The Future of Hydration</p>
+                    <p class="text-white/40 text-lg md:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
+                        
+                        Eliminating the 500 billion plastic bottles through seaweed-based molecular packaging.
                     </p>
                 </div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-12 rounded-[3rem] reveal-up">
-                    <div class="w-14 h-14 bg-aqua-primary/10 rounded-2xl flex items-center justify-center mb-10 border border-aqua-primary/20">
-                        <i data-lucide="zap" class="text-aqua-primary w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight">Rapid Bio-Sync</h4>
-                    <p class="text-white/40 text-sm leading-relaxed font-light">The seaweed membrane dissolves in seconds upon ingestion, providing an instant burst of hydration without the plastic aftertaste.</p>
-                </div>
-                <div class="glass-card p-12 rounded-[3rem] reveal-up" style="transition-delay: 100ms">
-                    <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-10 border border-indigo-500/20">
-                        <i data-lucide="wind" class="text-indigo-400 w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight">Zero Carbon Trace</h4>
-                    <p class="text-white/40 text-sm leading-relaxed font-light">Our production uses 10x less energy than traditional PET bottle manufacturing, utilizing renewable marine agriculture.</p>
-                </div>
-                <div class="glass-card p-12 rounded-[3rem] reveal-up" style="transition-delay: 200ms">
-                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-10 border border-blue-500/20">
-                        <i data-lucide="refresh-ccw" class="text-blue-400 w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight">Total Bio-Integrity</h4>
-                    <p class="text-white/40 text-sm leading-relaxed font-light">Unlike 'compostable' plastics that require industrial heat, GLOB pods compost in your garden within 6 weeks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- INDIA'S FIRST SECTION -->
-    <section id="india-first" class="py-32 px-6 relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="glass-card rounded-[4rem] p-10 md:p-24 overflow-hidden relative">
-                <div class="absolute top-10 right-10 opacity-[0.03] scale-150 pointer-events-none">
-                     <i data-lucide="atom" class="w-96 h-96 text-white"></i>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-8 reveal-up">
+                    <button class="bg-aqua-primary text-black px-14 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] flex items-center gap-4 hover:shadow-[0_0_50px_rgba(0,212,255,0.4)] transition-all hover:-translate-y-1">
+                        Equity Inquiry <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                    <div class="text-left border-l border-white/10 pl-8 hidden sm:block">
+                        <span class="text-[8px] font-black tracking-widest text-white/30 uppercase block mb-1">Status</span>
+                        <span class="text-white font-display text-sm font-bold">R&D Completion • 2025</span>
+                    </div>
                 </div>
-                <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="reveal-left space-y-8">
-                        <div>
-                            <p class="section-label mb-6 india-gradient border-b-0">Strategic Sovereignty</p>
-                            <h2 class="text-5xl md:text-8xl font-display font-black text-white leading-[0.85] uppercase tracking-tighter">
-                                Proudly <br><span class="india-gradient">India's First.</span>
-                            </h2>
-                        </div>
-                        <p class="text-white/50 text-xl leading-relaxed font-light">
-                            While the world debated sustainability, <span class="text-white font-medium italic">JEVAH</span> engineered it locally. We are the first deep-tech lab in <span class="india-gradient">India</span> to master seaweed-polymer encapsulation at scale.
+            </div>
+
+                <div class="relative flex justify-center items-center py-20 lg:py-0 reveal-up" style="transition-delay: 0.3s">
+                    <div class="hero-blob"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-full h-full max-w-[500px] max-h-[500px] rounded-full border border-white/5 animate-spin-slow"></div>
+                    </div>
+                    <!-- Floating Info Cards -->
+                    <div class="absolute top-10 left-0 glass-card p-8 rounded-[32px] animate-float">
+                        <div class="text-aqua-primary font-display text-4xl font-black mb-1">100%</div>
+                        <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-black">Seaweed Based</div>
+                    </div>
+                    <div class="absolute bottom-10 right-0 glass-card p-8 rounded-[32px] animate-float" style="animation-delay: 2s">
+                        <div class="text-white font-display text-4xl font-black mb-1">Bio</div>
+                        <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-black">Edible Solution</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- VISION SECTION -->
+        <section id="vision" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col lg:flex-row gap-20 items-end mb-24">
+                    <div class="reveal-left lg:w-2/3">
+                        <p class="section-label mb-8">The Core Proposition</p>
+                        <h3 class="text-5xl md:text-8xl font-display font-black text-white leading-[0.8] uppercase tracking-tighter">Liquid Architecture <br><span class="blue-gradient-text">No Packaging.</span></h3>
+                    </div>
+                    <div class="reveal-right lg:w-1/3 pb-2">
+                        <p class="text-white/40 text-lg font-light leading-relaxed">
+                            GLOB is not a bottle alternative. It is a fundamental shift in how we perceive fluids. Natural, edible, and zero-waste.
                         </p>
-                        <div class="flex flex-wrap gap-3">
-                            <div class="px-5 py-3 bg-white/[0.03] rounded-2xl border border-white/10 flex items-center gap-3 group hover:border-aqua-primary/30 transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_10px_#f97316]"></span>
-                                <span class="text-[9px] font-black uppercase tracking-widest">Pioneer IP</span>
-                            </div>
-                            <div class="px-5 py-3 bg-white/[0.03] rounded-2xl border border-white/10 flex items-center gap-3 group hover:border-aqua-primary/30 transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_#fff]"></span>
-                                <span class="text-[9px] font-black uppercase tracking-widest">Self-Reliant R&D</span>
-                            </div>
-                            <div class="px-5 py-3 bg-white/[0.03] rounded-2xl border border-white/10 flex items-center gap-3 group hover:border-aqua-primary/30 transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-green-600 shadow-[0_0_10px_#16a34a]"></span>
-                                <span class="text-[9px] font-black uppercase tracking-widest">Coastal Sourcing</span>
-                            </div>
-                        </div>
                     </div>
-                    <div class="reveal-right">
-                        <div class="relative group">
-                            <div class="absolute inset-0 bg-aqua-primary/10 blur-[80px] rounded-full group-hover:bg-aqua-primary/20 transition-all duration-1000"></div>
-                            <div class="relative glass-card aspect-square rounded-[3rem] flex items-center justify-center p-12 border-white/5 overflow-hidden">
-                                <div class="absolute inset-0 opacity-10 animate-pulse bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-                                <img src="https://flagpedia.net/data/flags/w580/in.png" alt="India" class="w-full opacity-30 grayscale contrast-125 brightness-75 mix-blend-screen group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000">
-                            </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-12 rounded-[3rem] reveal-up">
+                        <div class="w-14 h-14 bg-aqua-primary/10 rounded-2xl flex items-center justify-center mb-10 border border-aqua-primary/20">
+                            <i data-lucide="zap" class="text-aqua-primary w-6 h-6"></i>
                         </div>
+                        <h4 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight">Rapid Bio-Sync</h4>
+                        <p class="text-white/40 text-sm leading-relaxed font-light">The seaweed membrane dissolves in seconds upon ingestion, providing an instant burst of hydration without the plastic aftertaste.</p>
+                    </div>
+                    <div class="glass-card p-12 rounded-[3rem] reveal-up" style="transition-delay: 100ms">
+                        <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-10 border border-indigo-500/20">
+                            <i data-lucide="wind" class="text-indigo-400 w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight">Zero Carbon Trace</h4>
+                        <p class="text-white/40 text-sm leading-relaxed font-light">Our production uses 10x less energy than traditional PET bottle manufacturing, utilizing renewable marine agriculture.</p>
+                    </div>
+                    <div class="glass-card p-12 rounded-[3rem] reveal-up" style="transition-delay: 200ms">
+                        <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-10 border border-blue-500/20">
+                            <i data-lucide="refresh-ccw" class="text-blue-400 w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-4 uppercase tracking-tight">Total Bio-Integrity</h4>
+                        <p class="text-white/40 text-sm leading-relaxed font-light">Unlike 'compostable' plastics that require industrial heat, GLOB pods compost in your garden within 6 weeks.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- INNOVATION DEEP DIVE -->
-    <section id="science" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="glass-card rounded-[4rem] p-12 md:p-24 border-white/5 relative overflow-hidden">   
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"></div>
-                
-                <div class="text-center mb-24 relative z-10">
-                    <p class="section-label mb-6">Molecular Engineering</p>
-                    <h3 class="text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter">How it <span class="blue-gradient-text">Works.</span></h3>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-20 items-center relative z-10">
-                    <div class="space-y-12">
-                        <div class="flex gap-8 reveal-left">
-                            <span class="text-5xl font-display font-black text-white/10">01</span>
+        <!-- INDIA'S FIRST SECTION -->
+        <section id="india-first" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="glass-card rounded-[4rem] p-10 md:p-24 overflow-hidden relative">
+                    <div class="absolute top-10 right-10 opacity-[0.03] scale-150 pointer-events-none">
+                        <i data-lucide="atom" class="w-96 h-96 text-white"></i>
+                    </div>
+                    <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="reveal-left space-y-8">
                             <div>
-                                <h5 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Polymer Extraction</h5>
-                                <p class="text-white/40 text-sm leading-relaxed font-light">We extract high-purity Alginate from brown seaweed harvested from the Indian coastline, creating a 100% organic liquid container.</p>
+                                <p class="section-label mb-6 india-gradient border-b-0">Strategic Sovereignty</p>
+                                <h2 class="text-5xl md:text-8xl font-display font-black text-white leading-[0.85] uppercase tracking-tighter">
+                                    Proudly <br><span class="india-gradient">India's First.</span>
+                                </h2>
                             </div>
-                        </div>
-                        <div class="flex gap-8 reveal-left" style="transition-delay: 100ms">
-                            <span class="text-5xl font-display font-black text-white/10">02</span>
-                            <div>
-                                <h5 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Spherification Lab</h5>
-                                <p class="text-white/40 text-sm leading-relaxed font-light">Using cold-spherification technology, we drop fortified water into a calcium bath to form a robust, dual-layer membrane.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-8 reveal-left" style="transition-delay: 200ms">
-                            <span class="text-5xl font-display font-black text-white/10">03</span>
-                            <div>
-                                <h5 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Refinement & Peel</h5>
-                                <p class="text-white/40 text-sm leading-relaxed font-light">A secondary hygienic layer is added, designed to be peeled off like an orange skin before consumption.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="reveal-right">
-                        <div class="relative w-full aspect-square floating">
-                            <div class="absolute inset-0 bg-aqua-primary/20 blur-[100px] rounded-full"></div>
-                            <div class="relative w-full h-full glass-card rounded-full border-white/10 flex items-center justify-center">
-                                <img src="glob.png" alt="glob" style="width: 200%;">
-                                <div class="absolute w-2/3 h-2/3 border border-white/10 rounded-full animate-ping"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- IMPACT STATS -->
-    <section id="market" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-                <div class="glass-card rounded-[3rem] p-8 text-center reveal-up">
-                    <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Target Waste Reduction</p>
-                    <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-1">0</h4>
-                    <p class="text-[10px] font-black text-white/60 uppercase">Tons of Plastic</p>
-                </div>
-                <div class="glass-card rounded-[3rem] p-10 text-center reveal-up" style="transition-delay: 100ms">
-                    <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Ecosystem Value</p>
-                    <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-2">0</h4>
-                    <p class="text-[10px] font-black text-white/60 uppercase">Marine Life Impact</p>
-                </div>
-                <div class="glass-card rounded-[3rem] p-10 text-center reveal-up" style="transition-delay: 200ms">
-                    <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Carbon Displacement</p>
-                    <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-3">0</h4>
-                    <p class="text-[10px] font-black text-white/60 uppercase">Kg CO2 Monthly</p>
-                </div>
-                <div class="glass-card rounded-[3rem] p-10 text-center reveal-up" style="transition-delay: 300ms">
-                    <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Indian Manufacturing</p>
-                    <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-4">0</h4>
-                    <p class="text-[10px] font-black text-white/60 uppercase">Jobs Created</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ROADMAP -->
-    <section id="roadmap" class="py-32 px-6 overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24 reveal-up">
-                <p class="section-label mb-6">Path to Scale</p>
-                <h3 class="text-5xl md:text-8xl font-display font-black text-white uppercase tracking-tighter">The <span class="blue-gradient-text">Expansion.</span></h3>
-            </div>
-            
-            <div class="relative grid md:grid-cols-3 gap-10">
-                <div class="absolute top-1/2 left-0 w-full h-px bg-white/5 hidden md:block"></div>
-                
-                <div class="glass-card p-12 rounded-[3rem] relative z-10 reveal-up">
-                    <div class="w-12 h-12 bg-aqua-primary text-black rounded-full flex items-center justify-center font-black mb-8 shadow-[0_0_30px_rgba(0,212,255,0.4)]">26</div>
-                    <h5 class="text-xl font-bold text-white mb-4 uppercase">Pilot Deployment</h5>
-                    <p class="text-white/40 text-sm font-light leading-relaxed italic mb-4">"The Sports Era"</p>
-                    <p class="text-white/60 text-xs font-light leading-relaxed">Massive-scale testing at Indian Premier Marathons and music festivals across Tier-1 cities.</p>
-                </div>
-                
-                <div class="glass-card p-12 rounded-[3rem] relative z-10 reveal-up" style="transition-delay: 100ms">
-                    <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center font-black mb-8 border border-white/20">27</div>
-                    <h5 class="text-xl font-bold text-white mb-4 uppercase">Industrial B2B</h5>
-                    <p class="text-white/40 text-sm font-light leading-relaxed italic mb-4">"Vertical Saturation"</p>
-                    <p class="text-white/60 text-xs font-light leading-relaxed">Partnering with Luxury Airlines and Hotel Chains to replace in-room bottled water services.</p>
-                </div>
-
-                <div class="glass-card p-12 rounded-[3rem] relative z-10 reveal-up" style="transition-delay: 200ms">
-                    <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center font-black mb-8 border border-white/20">28</div>
-                    <h5 class="text-xl font-bold text-white mb-4 uppercase">Global Licensing</h5>
-                    <p class="text-white/40 text-sm font-light leading-relaxed italic mb-4">"Crafting Tomorrow"</p>
-                    <p class="text-white/60 text-xs font-light leading-relaxed">Exporting the <span class="text-white italic">JEVAH</span> material patent to the APAC and European Union markets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOUNDER SECTION -->
-    <section id="founder" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="glass-card rounded-[5rem] p-12 md:p-28 relative overflow-hidden group">
-                <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-aqua-primary/10 rounded-full blur-[120px] group-hover:bg-aqua-primary/20 transition-all duration-1000"></div>
-                
-                <div class="grid lg:grid-cols-2 gap-20 items-center">
-                    <div class="reveal-left">
-                        <div class="inline-flex items-center gap-4 px-6 py-2 bg-white/[0.03] rounded-2xl border border-white/5 mb-12">
-                            <i data-lucide="feather" class="text-aqua-primary w-4 h-4"></i>
-                            <span class="text-[9px] font-black uppercase tracking-widest text-white/60 italic">Crafting Tomorrow</span>
-                        </div>
-                        <h2 class="text-5xl md:text-7xl font-display font-black text-white mb-10 leading-[0.9] uppercase tracking-tighter">Founder's <br><span class="blue-gradient-text italic">Manifesto.</span></h2>
-                        <div class="space-y-8">
-                            <p class="text-white/60 text-xl font-light leading-relaxed italic">
-                                "We didn't start <span class="text-white font-medium">JEVAH</span> to just create another product. We started it to dismantle a legacy of waste. GLOB is the first chapter of an Indian deep-tech story that the world needs to hear."
+                            <p class="text-white/50 text-xl leading-relaxed font-light">
+                                While the world debated sustainability, <span class="text-white font-medium italic">JEVAH</span> engineered it locally. We are the first deep-tech lab in <span class="india-gradient">India</span> to master seaweed-polymer encapsulation at scale.
                             </p>
-                            <div class="pt-8 border-t border-white/10">
-                                <h4 class="text-3xl font-display font-black text-white">Janvi Patel</h4>
-                                <p class="text-aqua-primary font-black uppercase text-[10px] tracking-[0.4em] mt-2">Visionary & Founder, GLOB</p>
+                            <div class="flex flex-wrap gap-3">
+                                <div class="px-5 py-3 bg-white/[0.03] rounded-2xl border border-white/10 flex items-center gap-3 group hover:border-aqua-primary/30 transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_10px_#f97316]"></span>
+                                    <span class="text-[9px] font-black uppercase tracking-widest">Pioneer IP</span>
+                                </div>
+                                <div class="px-5 py-3 bg-white/[0.03] rounded-2xl border border-white/10 flex items-center gap-3 group hover:border-aqua-primary/30 transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_#fff]"></span>
+                                    <span class="text-[9px] font-black uppercase tracking-widest">Self-Reliant R&D</span>
+                                </div>
+                                <div class="px-5 py-3 bg-white/[0.03] rounded-2xl border border-white/10 flex items-center gap-3 group hover:border-aqua-primary/30 transition-colors">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-600 shadow-[0_0_10px_#16a34a]"></span>
+                                    <span class="text-[9px] font-black uppercase tracking-widest">Coastal Sourcing</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="reveal-right">
-                        <div class="relative max-w-sm mx-auto group">
-                            <div class="absolute inset-0 bg-aqua-primary/10 rounded-[4rem] rotate-6 group-hover:rotate-3 transition-transform duration-700"></div>
-                            <div class="relative glass-card aspect-[4/5] rounded-[4rem] overflow-hidden border-white/10 flex items-center justify-center">
-                                <i data-lucide="sparkles" class="w-20 h-20 text-white/5"></i>
-                                <div class="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-black/80 to-transparent">
-                                    <span class="text-[8px] font-black text-white/40 uppercase tracking-[0.3em]">Jevah Material Labs</span>
+                        <div class="reveal-right">
+                            <div class="relative group">
+                                <div class="absolute inset-0 bg-aqua-primary/10 blur-[80px] rounded-full group-hover:bg-aqua-primary/20 transition-all duration-1000"></div>
+                                <div class="relative glass-card aspect-square rounded-[3rem] flex items-center justify-center p-12 border-white/5 overflow-hidden">
+                                    <div class="absolute inset-0 opacity-10 animate-pulse bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+                                    <img src="https://flagpedia.net/data/flags/w580/in.png" alt="India" class="w-full opacity-30 grayscale contrast-125 brightness-75 mix-blend-screen group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- INNOVATION DEEP DIVE -->
+        <section id="science" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="glass-card rounded-[4rem] p-12 md:p-24 border-white/5 relative overflow-hidden">   
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"></div>
+                    
+                    <div class="text-center mb-24 relative z-10">
+                        <p class="section-label mb-6">Molecular Engineering</p>
+                        <h3 class="text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter">How it <span class="blue-gradient-text">Works.</span></h3>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-20 items-center relative z-10">
+                        <div class="space-y-12">
+                            <div class="flex gap-8 reveal-left">
+                                <span class="text-5xl font-display font-black text-white/10">01</span>
+                                <div>
+                                    <h5 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Polymer Extraction</h5>
+                                    <p class="text-white/40 text-sm leading-relaxed font-light">We extract high-purity Alginate from brown seaweed harvested from the Indian coastline, creating a 100% organic liquid container.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-8 reveal-left" style="transition-delay: 100ms">
+                                <span class="text-5xl font-display font-black text-white/10">02</span>
+                                <div>
+                                    <h5 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Spherification Lab</h5>
+                                    <p class="text-white/40 text-sm leading-relaxed font-light">Using cold-spherification technology, we drop fortified water into a calcium bath to form a robust, dual-layer membrane.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-8 reveal-left" style="transition-delay: 200ms">
+                                <span class="text-5xl font-display font-black text-white/10">03</span>
+                                <div>
+                                    <h5 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">Refinement & Peel</h5>
+                                    <p class="text-white/40 text-sm leading-relaxed font-light">A secondary hygienic layer is added, designed to be peeled off like an orange skin before consumption.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-right">
+                            <div class="relative w-full aspect-square floating">
+                                <div class="absolute inset-0 bg-aqua-primary/20 blur-[100px] rounded-full"></div>
+                                <div class="relative w-full h-full glass-card rounded-full border-white/10 flex items-center justify-center">
+                                    <img src="glob.png" alt="glob" style="width: 200%;">
+                                    <div class="absolute w-2/3 h-2/3 border border-white/10 rounded-full animate-ping"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACT STATS -->
+        <section id="market" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div class="glass-card rounded-[3rem] p-8 text-center reveal-up">
+                        <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Target Waste Reduction</p>
+                        <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-1">0</h4>
+                        <p class="text-[10px] font-black text-white/60 uppercase">Tons of Plastic</p>
+                    </div>
+                    <div class="glass-card rounded-[3rem] p-10 text-center reveal-up" style="transition-delay: 100ms">
+                        <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Ecosystem Value</p>
+                        <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-2">0</h4>
+                        <p class="text-[10px] font-black text-white/60 uppercase">Marine Life Impact</p>
+                    </div>
+                    <div class="glass-card rounded-[3rem] p-10 text-center reveal-up" style="transition-delay: 200ms">
+                        <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Carbon Displacement</p>
+                        <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-3">0</h4>
+                        <p class="text-[10px] font-black text-white/60 uppercase">Kg CO2 Monthly</p>
+                    </div>
+                    <div class="glass-card rounded-[3rem] p-10 text-center reveal-up" style="transition-delay: 300ms">
+                        <p class="text-[9px] font-black tracking-[0.3em] text-white/30 uppercase mb-8">Indian Manufacturing</p>
+                        <h4 class="text-6xl font-display font-black blue-gradient-text mb-4" id="stat-4">0</h4>
+                        <p class="text-[10px] font-black text-white/60 uppercase">Jobs Created</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROADMAP -->
+        <section id="roadmap" class="py-32 px-6 overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-24 reveal-up">
+                    <p class="section-label mb-6">Path to Scale</p>
+                    <h3 class="text-5xl md:text-8xl font-display font-black text-white uppercase tracking-tighter">The <span class="blue-gradient-text">Expansion.</span></h3>
+                </div>
+                
+                <div class="relative grid md:grid-cols-3 gap-10">
+                    <div class="absolute top-1/2 left-0 w-full h-px bg-white/5 hidden md:block"></div>
+                    
+                    <div class="glass-card p-12 rounded-[3rem] relative z-10 reveal-up">
+                        <div class="w-12 h-12 bg-aqua-primary text-black rounded-full flex items-center justify-center font-black mb-8 shadow-[0_0_30px_rgba(0,212,255,0.4)]">26</div>
+                        <h5 class="text-xl font-bold text-white mb-4 uppercase">Pilot Deployment</h5>
+                        <p class="text-white/40 text-sm font-light leading-relaxed italic mb-4">"The Sports Era"</p>
+                        <p class="text-white/60 text-xs font-light leading-relaxed">Massive-scale testing at Indian Premier Marathons and music festivals across Tier-1 cities.</p>
+                    </div>
+                    
+                    <div class="glass-card p-12 rounded-[3rem] relative z-10 reveal-up" style="transition-delay: 100ms">
+                        <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center font-black mb-8 border border-white/20">27</div>
+                        <h5 class="text-xl font-bold text-white mb-4 uppercase">Industrial B2B</h5>
+                        <p class="text-white/40 text-sm font-light leading-relaxed italic mb-4">"Vertical Saturation"</p>
+                        <p class="text-white/60 text-xs font-light leading-relaxed">Partnering with Luxury Airlines and Hotel Chains to replace in-room bottled water services.</p>
+                    </div>
+
+                    <div class="glass-card p-12 rounded-[3rem] relative z-10 reveal-up" style="transition-delay: 200ms">
+                        <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center font-black mb-8 border border-white/20">28</div>
+                        <h5 class="text-xl font-bold text-white mb-4 uppercase">Global Licensing</h5>
+                        <p class="text-white/40 text-sm font-light leading-relaxed italic mb-4">"Crafting Tomorrow"</p>
+                        <p class="text-white/60 text-xs font-light leading-relaxed">Exporting the <span class="text-white italic">JEVAH</span> material patent to the APAC and European Union markets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOUNDER SECTION -->
+        <section id="founder" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="glass-card rounded-[5rem] p-12 md:p-28 relative overflow-hidden group">
+                    <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-aqua-primary/10 rounded-full blur-[120px] group-hover:bg-aqua-primary/20 transition-all duration-1000"></div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-20 items-center">
+                        <div class="reveal-left">
+                            <div class="inline-flex items-center gap-4 px-6 py-2 bg-white/[0.03] rounded-2xl border border-white/5 mb-12">
+                                <i data-lucide="feather" class="text-aqua-primary w-4 h-4"></i>
+                                <span class="text-[9px] font-black uppercase tracking-widest text-white/60 italic">Crafting Tomorrow</span>
+                            </div>
+                            <h2 class="text-5xl md:text-7xl font-display font-black text-white mb-10 leading-[0.9] uppercase tracking-tighter">Founder's <br><span class="blue-gradient-text italic">Manifesto.</span></h2>
+                            <div class="space-y-8">
+                                <p class="text-white/60 text-xl font-light leading-relaxed italic">
+                                    "We didn't start <span class="text-white font-medium">JEVAH</span> to just create another product. We started it to dismantle a legacy of waste. GLOB is the first chapter of an Indian deep-tech story that the world needs to hear."
+                                </p>
+                                <div class="pt-8 border-t border-white/10">
+                                    <h4 class="text-3xl font-display font-black text-white">Janvi Patel</h4>
+                                    <p class="text-aqua-primary font-black uppercase text-[10px] tracking-[0.4em] mt-2">Visionary & Founder, GLOB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reveal-right">
+                            <div class="relative max-w-sm mx-auto group">
+                                <div class="absolute inset-0 bg-aqua-primary/10 rounded-[4rem] rotate-6 group-hover:rotate-3 transition-transform duration-700"></div>
+                                <div class="relative glass-card aspect-[4/5] rounded-[4rem] overflow-hidden border-white/10 flex items-center justify-center">
+                                    <i data-lucide="sparkles" class="w-20 h-20 text-white/5"></i>
+                                    <div class="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-black/80 to-transparent">
+                                        <span class="text-[8px] font-black text-white/40 uppercase tracking-[0.3em]">Jevah Material Labs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER / CONTACT -->
+    <footer id="invest" class="py-32 px-6 relative bg-black">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Top Section -->
+        <div class="grid lg:grid-cols-2 gap-20 items-start mb-28">
+
+        <!-- Left Content -->
+        <div class="space-y-10">
+            <h3 class="text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tight leading-[0.9]">
+            Let's Build the <br>
+            <span class="blue-gradient-text">Future.</span>
+            </h3>
+
+            <p class="text-white/50 text-lg max-w-md leading-relaxed">
+            We are redefining hydration with edible water technology. 
+            Currently welcoming visionary partners for our Seed phase.
+            </p>
+
+            <!-- Social Links -->
+            <div class="flex gap-5 pt-4">
+            <a href="#" class="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
+                <i data-lucide="linkedin" class="w-5 h-5 text-white"></i>
+            </a>
+            <a href="#" class="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
+                <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
+            </a>
+            <a href="#" class="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
+                <i data-lucide="mail" class="w-5 h-5 text-white"></i>
+            </a>
+            </div>
         </div>
-    </section>
 
-    <!-- FOOTER / CONTACT -->
-  <footer id="invest" class="py-32 px-6 relative bg-black">
-  <div class="max-w-7xl mx-auto">
+        <!-- Contact Form -->
+        <div class="glass-card p-10 rounded-3xl border border-white/5 relative">
+        <form action="mailto:jevah.main@gmail.com" method="post" enctype="text/plain" class="space-y-5">
 
-    <!-- Top Section -->
-    <div class="grid lg:grid-cols-2 gap-20 items-start mb-28">
+    <input 
+        type="text" 
+        name="Name"
+        placeholder="Your Name" 
+        required
+        class="w-full bg-white/[0.04] border border-white/10 p-4 rounded-xl text-white outline-none focus:border-aqua-primary/50 placeholder:text-white/30 transition-all"
+    >
 
-      <!-- Left Content -->
-      <div class="space-y-10">
-        <h3 class="text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tight leading-[0.9]">
-          Let's Build the <br>
-          <span class="blue-gradient-text">Future.</span>
-        </h3>
+    <input 
+        type="email" 
+        name="Email"
+        placeholder="Email Address" 
+        required
+        class="w-full bg-white/[0.04] border border-white/10 p-4 rounded-xl text-white outline-none focus:border-aqua-primary/50 placeholder:text-white/30 transition-all"
+    >
 
-        <p class="text-white/50 text-lg max-w-md leading-relaxed">
-          We are redefining hydration with edible water technology. 
-          Currently welcoming visionary partners for our Seed phase.
-        </p>
+    <textarea 
+        name="Message"
+        placeholder="Your Message" 
+        rows="4" 
+        required
+        class="w-full bg-white/[0.04] border border-white/10 p-4 rounded-xl text-white outline-none focus:border-aqua-primary/50 placeholder:text-white/30 transition-all"
+    ></textarea>
 
-        <!-- Social Links -->
-        <div class="flex gap-5 pt-4">
-          <a href="#" class="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
-            <i data-lucide="linkedin" class="w-5 h-5 text-white"></i>
-          </a>
-          <a href="#" class="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
-            <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
-          </a>
-          <a href="#" class="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
-            <i data-lucide="mail" class="w-5 h-5 text-white"></i>
-          </a>
-        </div>
-      </div>
+    <button type="submit" class="w-full bg-aqua-primary text-black p-4 rounded-xl font-semibold tracking-wide hover:bg-white hover:text-black transition-all">
+        Initiate Contact
+    </button>
 
-      <!-- Contact Form -->
-      <div class="glass-card p-10 rounded-3xl border border-white/5 relative">
-      <form action="mailto:jevah.main@gmail.com" method="post" enctype="text/plain" class="space-y-5">
-
-  <input 
-    type="text" 
-    name="Name"
-    placeholder="Your Name" 
-    required
-    class="w-full bg-white/[0.04] border border-white/10 p-4 rounded-xl text-white outline-none focus:border-aqua-primary/50 placeholder:text-white/30 transition-all"
-  >
-
-  <input 
-    type="email" 
-    name="Email"
-    placeholder="Email Address" 
-    required
-    class="w-full bg-white/[0.04] border border-white/10 p-4 rounded-xl text-white outline-none focus:border-aqua-primary/50 placeholder:text-white/30 transition-all"
-  >
-
-  <textarea 
-    name="Message"
-    placeholder="Your Message" 
-    rows="4" 
-    required
-    class="w-full bg-white/[0.04] border border-white/10 p-4 rounded-xl text-white outline-none focus:border-aqua-primary/50 placeholder:text-white/30 transition-all"
-  ></textarea>
-
-  <button type="submit" class="w-full bg-aqua-primary text-black p-4 rounded-xl font-semibold tracking-wide hover:bg-white hover:text-black transition-all">
-    Initiate Contact
-  </button>
-
-</form>
-</div>
-</div>
-
-    <!-- Bottom Section -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-10 pt-12 border-t border-white/10">
-
-      <!-- Brand -->
-      <div class="text-center md:text-left">
-        <h2 class="font-display text-3xl font-black text-white tracking-tight">
-          GLOB
-        </h2>
-        <p class="text-white/40 text-sm mt-1">
-          The Future of Hydration
-        </p>
-        <p class="text-white/20 text-xs mt-3">
-          © 2026 JEVAH. All rights reserved.
-        </p>
-      </div>
-
-      <!-- Links -->
-     
-
+    </form>
     </div>
-  </div>
-</footer>
+    </div>
+
+        <!-- Bottom Section -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-10 pt-12 border-t border-white/10">
+
+        <!-- Brand -->
+        <div class="text-center md:text-left">
+            <h2 class="font-display text-3xl font-black text-white tracking-tight">
+            GLOB
+            </h2>
+            <p class="text-white/40 text-sm mt-1">
+            The Future of Hydration
+            </p>
+            <p class="text-white/20 text-xs mt-3">
+            © 2026 JEVAH. All rights reserved.
+            </p>
+        </div>
+
+        <!-- Links -->
+        
+
+        </div>
+    </div>
+    </footer>
 
 
-    <script>
-        function createBubbles() {
-            const container = document.getElementById('bubble-container');
-            const count = 40;
-            for (let i = 0; i < count; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                const size = Math.random() * 30 + 5;
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${Math.random() * 100}%`;
-                bubble.style.opacity = Math.random() * 0.2;
-                container.appendChild(bubble);
-                gsap.to(bubble, {
-                    y: - (window.innerHeight + 200),
-                    x: `+=${Math.random() * 150 - 75}`,
-                    duration: Math.random() * 20 + 15,
-                    repeat: -1,
-                    delay: Math.random() * 10,
-                    ease: "sine.inOut"
+        <script>
+            function createBubbles() {
+                const container = document.getElementById('bubble-container');
+                const count = 40;
+                for (let i = 0; i < count; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    const size = Math.random() * 30 + 5;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${Math.random() * 100}%`;
+                    bubble.style.opacity = Math.random() * 0.2;
+                    container.appendChild(bubble);
+                    gsap.to(bubble, {
+                        y: - (window.innerHeight + 200),
+                        x: `+=${Math.random() * 150 - 75}`,
+                        duration: Math.random() * 20 + 15,
+                        repeat: -1,
+                        delay: Math.random() * 10,
+                        ease: "sine.inOut"
+                    });
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (toggle && mobileMenu) {
+        toggle.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+
+            if (!mobileMenu.classList.contains("hidden")) {
+                gsap.from(mobileMenu, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.4,
+                    ease: "power3.out"
                 });
             }
-        }
+        });
+    }
+});
 
-        function initStats() {
-            const animateStat = (id, end, suffix = "") => {
-                const el = document.getElementById(id);
-                if (!el) return;
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: "top 90%",
-                    onEnter: () => {
-                        let obj = { val: 0 };
-                        gsap.to(obj, {
-                            val: end,
-                            duration: 3,
-                            ease: "power3.out",
-                            onUpdate: () => {
-                                el.innerHTML = Math.floor(obj.val).toLocaleString() + suffix;
-                            }
-                        });
-                    }
-                });
-            };
-            animateStat("stat-1", 12500, "+");
-            animateStat("stat-2", 85, "%");
-            animateStat("stat-3", 42000, "k");
-            animateStat("stat-4", 550, "+");
-        }
-
-        window.onload = () => {
-            lucide.createIcons();
-            gsap.registerPlugin(ScrollTrigger);
-            createBubbles();
-            initStats();
-
-            // Progress Line
-            gsap.to("#topProgress", {
-                width: "100%",
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 0.1
-                }
-            });
-
-            // Reveal animations
-            gsap.utils.toArray(".reveal-up").forEach(el => {
-                gsap.from(el, { 
-                    y: 60, 
-                    opacity: 0, 
-                    duration: 1.2, 
-                    ease: "power4.out", 
-                    scrollTrigger: { trigger: el, start: "top 92%" } 
-                });
-            });
-
-            gsap.utils.toArray(".reveal-left").forEach(el => {
-                gsap.from(el, { 
-                    x: -60, 
-                    opacity: 0, 
-                    duration: 1.4, 
-                    ease: "power3.out", 
-                    scrollTrigger: { trigger: el, start: "top 90%" } 
-                });
-            });
-
-            gsap.utils.toArray(".reveal-right").forEach(el => {
-                gsap.from(el, { 
-                    x: 60, 
-                    opacity: 0, 
-                    duration: 1.4, 
-                    ease: "power3.out", 
-                    scrollTrigger: { trigger: el, start: "top 90%" } 
-                });
-            });
-
-            // Interactive side dots
-            const dots = document.querySelectorAll(".dot");
-            dots.forEach(dot => {
-                const targetId = dot.getAttribute("data-target");
-                ScrollTrigger.create({
-                    trigger: targetId,
-                    start: "top 50%",
-                    end: "bottom 50%",
-                    onToggle: self => {
-                        if (self.isActive) {
-                            dots.forEach(d => d.classList.remove("active"));
-                            dot.classList.add("active");
+            function initStats() {
+                const animateStat = (id, end, suffix = "") => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    ScrollTrigger.create({
+                        trigger: el,
+                        start: "top 90%",
+                        onEnter: () => {
+                            let obj = { val: 0 };
+                            gsap.to(obj, {
+                                val: end,
+                                duration: 3,
+                                ease: "power3.out",
+                                onUpdate: () => {
+                                    el.innerHTML = Math.floor(obj.val).toLocaleString() + suffix;
+                                }
+                            });
                         }
+                    });
+                };
+                animateStat("stat-1", 12500, "+");
+                animateStat("stat-2", 85, "%");
+                animateStat("stat-3", 42000, "k");
+                animateStat("stat-4", 550, "+");
+            }
+
+            window.onload = () => {
+                lucide.createIcons();
+                gsap.registerPlugin(ScrollTrigger);
+                createBubbles();
+                initStats();
+
+                // Progress Line
+                gsap.to("#topProgress", {
+                    width: "100%",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "body",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.1
                     }
                 });
-                dot.addEventListener("click", () => {
-                    const targetEl = document.querySelector(targetId);
-                    window.scrollTo({
-                        top: targetEl.offsetTop - 100,
-                        behavior: "smooth"
+
+                // Reveal animations
+                gsap.utils.toArray(".reveal-up").forEach(el => {
+                    gsap.from(el, { 
+                        y: 60, 
+                        opacity: 0, 
+                        duration: 1.2, 
+                        ease: "power4.out", 
+                        scrollTrigger: { trigger: el, start: "top 92%" } 
                     });
                 });
-            });
-        };
-    </script>
-</body>
-</html>
+
+                gsap.utils.toArray(".reveal-left").forEach(el => {
+                    gsap.from(el, { 
+                        x: -60, 
+                        opacity: 0, 
+                        duration: 1.4, 
+                        ease: "power3.out", 
+                        scrollTrigger: { trigger: el, start: "top 90%" } 
+                    });
+                });
+
+                gsap.utils.toArray(".reveal-right").forEach(el => {
+                    gsap.from(el, { 
+                        x: 60, 
+                        opacity: 0, 
+                        duration: 1.4, 
+                        ease: "power3.out", 
+                        scrollTrigger: { trigger: el, start: "top 90%" } 
+                    });
+                });
+
+                // Interactive side dots
+                const dots = document.querySelectorAll(".dot");
+                dots.forEach(dot => {
+                    const targetId = dot.getAttribute("data-target");
+                    ScrollTrigger.create({
+                        trigger: targetId,
+                        start: "top 50%",
+                        end: "bottom 50%",
+                        onToggle: self => {
+                            if (self.isActive) {
+                                dots.forEach(d => d.classList.remove("active"));
+                                dot.classList.add("active");
+                            }
+                        }
+                    });
+                    dot.addEventListener("click", () => {
+                        const targetEl = document.querySelector(targetId);
+                        window.scrollTo({
+                            top: targetEl.offsetTop - 100,
+                            behavior: "smooth"
+                        });
+                    });
+                });
+            };
+        </script>
+    </body>
+    </html>
