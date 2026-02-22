@@ -252,13 +252,13 @@
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-white/40">
+            <div class="hidden lg:flex gap-6 xl:gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-white/40">
                 <a href="#vision" class="nav-link">Vision</a>
                 <a href="#science" class="nav-link">Innovation</a>
-                <a href="#commercial" class="nav-link">Commercial</a>
+                <a href="#how-to" class="nav-link">Usage</a>
+                <a href="#applications" class="nav-link">Markets</a>
                 <a href="#market" class="nav-link">Impact</a>
-                <a href="#roadmap" class="nav-link">Path</a>
-                <a href="#company" class="nav-link text-aqua-primary">Investors</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </div>
 
             <!-- Right Side -->
@@ -282,24 +282,39 @@
         <div id="mobileMenu" 
              class="lg:hidden hidden mt-4 mx-4 
              bg-white/[0.04] backdrop-blur-2xl border border-white/10 
-             rounded-3xl px-6 sm:px-8 py-8 sm:py-10 space-y-4 sm:space-y-6 shadow-2xl">
+             rounded-3xl px-6 sm:px-8 py-8 sm:py-10 space-y-4 sm:space-y-6 shadow-2xl h-[80vh] overflow-y-auto">
 
-            <a href="#vision" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary transition-colors duration-300">
+            <a href="#problem" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
+                The Crisis
+            </a>
+            <a href="#vision" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
                 Vision
             </a>
-            <a href="#science" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary transition-colors duration-300">
+            <a href="#science" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
                 Innovation
             </a>
-            <a href="#commercial" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary transition-colors duration-300">
+            <a href="#how-to" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
+                How to Use
+            </a>
+            <a href="#applications" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
+                Markets
+            </a>
+            <a href="#specs" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
+                Tech Specs
+            </a>
+            <a href="#commercial" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
                 Commercial
             </a>
-            <a href="#market" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary transition-colors duration-300">
+            <a href="#market" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
                 Impact
             </a>
-            <a href="#roadmap" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary transition-colors duration-300">
+            <a href="#roadmap" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
                 Path
             </a>
-            <a href="#company" class="block text-base sm:text-lg font-black uppercase tracking-widest text-aqua-primary transition-colors duration-300">
+            <a href="#faq" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
+                FAQ
+            </a>
+            <a href="#company" class="block text-base sm:text-lg font-black uppercase tracking-widest text-white/60 hover:text-aqua-primary hover:translate-x-2 transition-all duration-300">
                 Investors
             </a>
             <button class="glow-button w-full bg-white text-black py-4 mt-4 rounded-xl 
@@ -311,18 +326,22 @@
     </nav>
 
     <!-- SIDE NAV INDICATOR -->
-    <div class="fixed right-10 top-1/2 -translate-y-1/2 z-[100] hidden lg:block">
-        <div class="flex flex-col items-center">
+    <div class="fixed right-6 xl:right-10 top-1/2 -translate-y-1/2 z-[100] hidden lg:block">
+        <div class="flex flex-col items-center space-y-1">
             <span class="text-[7px] font-black uppercase tracking-[0.3em] vertical-text mb-4 opacity-20 transform -rotate-90">Scroll</span>
-            <div class="dot active" data-target="#hero"></div>
-            <div class="dot" data-target="#vision"></div>
-            <div class="dot" data-target="#india-first"></div>
-            <div class="dot" data-target="#science"></div>
-            <div class="dot" data-target="#commercial"></div>
-            <div class="dot" data-target="#market"></div>
-            <div class="dot" data-target="#roadmap"></div>
-            <div class="dot" data-target="#founder"></div>
-            <div class="dot" data-target="#company"></div>
+            <div class="dot active" data-target="#hero" title="Hero"></div>
+            <div class="dot" data-target="#problem" title="The Crisis"></div>
+            <div class="dot" data-target="#vision" title="Vision"></div>
+            <div class="dot" data-target="#india-first" title="Pioneer"></div>
+            <div class="dot" data-target="#science" title="Innovation"></div>
+            <div class="dot" data-target="#how-to" title="How to Use"></div>
+            <div class="dot" data-target="#applications" title="Use Cases"></div>
+            <div class="dot" data-target="#specs" title="Tech Specs"></div>
+            <div class="dot" data-target="#commercial" title="Commercial"></div>
+            <div class="dot" data-target="#market" title="Impact"></div>
+            <div class="dot" data-target="#roadmap" title="Roadmap"></div>
+            <div class="dot" data-target="#faq" title="FAQ"></div>
+            <div class="dot" data-target="#company" title="Investors"></div>
         </div>
     </div>
 
@@ -381,6 +400,45 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <!-- THE PROBLEM / CRISIS SECTION -->
+    <section id="problem" class="py-20 sm:py-32 px-4 sm:px-6 relative bg-[#010408]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 sm:gap-20 items-center">
+                <div class="reveal-left">
+                    <p class="section-label mb-6 sm:mb-8 text-red-500 border-red-500/20">The Global Crisis</p>
+                    <h3 class="text-4xl sm:text-5xl md:text-7xl font-display font-black text-white leading-[1] uppercase tracking-tighter mb-8">
+                        We are drowning in <br><span class="text-red-500">Convenience.</span>
+                    </h3>
+                    <p class="text-white/50 text-base sm:text-lg leading-relaxed font-light mb-8">
+                        Every single minute, 1 million plastic bottles are purchased worldwide. Less than 9% of these are effectively recycled. The rest disintegrate into microplastics that infiltrate our oceans, our food chain, and ultimately, our bloodstream.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border-l border-red-500/50 pl-4">
+                            <h4 class="text-3xl font-display font-black text-white mb-1">500B+</h4>
+                            <p class="text-[9px] font-black text-white/40 uppercase tracking-widest">Bottles made yearly</p>
+                        </div>
+                        <div class="border-l border-red-500/50 pl-4">
+                            <h4 class="text-3xl font-display font-black text-white mb-1">450 Yrs</h4>
+                            <p class="text-[9px] font-black text-white/40 uppercase tracking-widest">Time to decompose</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="glass-card rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 border-red-500/10 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-red-500/5"></div>
+                        <i data-lucide="alert-triangle" class="w-16 h-16 text-red-500 mb-6 relative z-10"></i>
+                        <h4 class="text-2xl font-bold text-white mb-4 relative z-10">The Recycling Myth</h4>
+                        <p class="text-white/40 text-sm leading-relaxed font-light relative z-10">
+                            Recycling delays the inevitable; it doesn't solve it. Traditional PET (polyethylene terephthalate) bottles simply downcycle until they become unmanageable waste. 
+                            <br><br>
+                            We don't need better recycling. <strong>We need better materials.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -473,7 +531,7 @@
     </section>
 
     <!-- INNOVATION DEEP DIVE -->
-    <section id="science" class="py-20 sm:py-32 px-4 sm:px-6">
+    <section id="science" class="py-20 sm:py-32 px-4 sm:px-6 relative">
         <div class="max-w-7xl mx-auto">
             <div class="glass-card rounded-[2rem] sm:rounded-[3rem] md:rounded-[4rem] p-6 sm:p-12 md:p-24 border-white/5 relative overflow-hidden">   
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"></div>
@@ -511,12 +569,149 @@
                         <div class="relative w-full aspect-square floating mx-auto max-w-md lg:max-w-none">
                             <div class="absolute inset-0 bg-aqua-primary/20 blur-[60px] sm:blur-[100px] rounded-full"></div>
                             <div class="relative w-full h-full glass-card rounded-full border-white/10 flex items-center justify-center overflow-hidden">
-                                <img src="glob.png" alt="glob" class="w-[150%] sm:w-[200%] max-w-none">
+                                <img src="glob.png" alt="glob" class="w-[150%] sm:w-[200%] max-w-none" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjgwIiBmaWxsPSIjMDBkNGZmIiBvcGFjaXR5PSIwLjUiLz48L3N2Zz4='">
                                 <div class="absolute w-2/3 h-2/3 border border-white/10 rounded-full animate-ping"></div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSUMPTION RITUAL (HOW TO USE) -->
+    <section id="how-to" class="py-20 sm:py-32 px-4 sm:px-6 relative bg-black/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 sm:mb-24 reveal-up">
+                <p class="section-label mb-4 sm:mb-6">User Experience</p>
+                <h3 class="text-4xl sm:text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter">The Consumption <span class="blue-gradient-text">Ritual.</span></h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 sm:gap-12 relative">
+                <!-- Connecting Line -->
+                <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-aqua-primary/30 to-transparent hidden md:block -z-10"></div>
+                
+                <div class="text-center reveal-up bg-aqua-dark/50 p-8 rounded-3xl backdrop-blur-sm border border-white/5">
+                    <div class="w-20 h-20 mx-auto bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10 shadow-[0_0_30px_rgba(0,212,255,0.1)]">
+                        <i data-lucide="scissors" class="text-white w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">1. Peel</h4>
+                    <p class="text-white/40 text-sm leading-relaxed font-light">Remove the outer hygienic protective layer, just like peeling a fruit.</p>
+                </div>
+
+                <div class="text-center reveal-up bg-aqua-dark/50 p-8 rounded-3xl backdrop-blur-sm border border-white/5" style="transition-delay: 100ms">
+                    <div class="w-20 h-20 mx-auto bg-aqua-primary/20 rounded-full flex items-center justify-center mb-6 border border-aqua-primary/40 shadow-[0_0_40px_rgba(0,212,255,0.3)] scale-110">
+                        <i data-lucide="droplet" class="text-aqua-primary w-10 h-10"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3 uppercase tracking-tight text-aqua-primary">2. Hydrate</h4>
+                    <p class="text-white/40 text-sm leading-relaxed font-light">Pop the inner GLOB into your mouth. Bite down to release a refreshing burst of hydration.</p>
+                </div>
+
+                <div class="text-center reveal-up bg-aqua-dark/50 p-8 rounded-3xl backdrop-blur-sm border border-white/5" style="transition-delay: 200ms">
+                    <div class="w-20 h-20 mx-auto bg-green-500/10 rounded-full flex items-center justify-center mb-6 border border-green-500/20 shadow-[0_0_30px_rgba(34,197,94,0.1)]">
+                        <i data-lucide="leaf" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3 uppercase tracking-tight">3. Return</h4>
+                    <p class="text-white/40 text-sm leading-relaxed font-light">Swallow the 100% edible membrane, or drop it on the ground where it naturally composts in weeks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARGET MARKETS (APPLICATIONS) -->
+    <section id="applications" class="py-20 sm:py-32 px-4 sm:px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-up">
+                <div>
+                    <p class="section-label mb-4 sm:mb-6">Strategic Deployments</p>
+                    <h3 class="text-4xl sm:text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter">Where We <span class="blue-gradient-text">Belong.</span></h3>
+                </div>
+                <p class="text-white/40 text-sm sm:text-base max-w-md font-light leading-relaxed mt-6 md:mt-0 pb-2">
+                    GLOB is engineered for environments where plastic waste is highest and convenience is critical.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-8 rounded-[2rem] reveal-up hover:border-orange-500/30 group">
+                    <i data-lucide="users" class="text-orange-400 w-8 h-8 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-lg font-bold text-white mb-2 uppercase">Mass Events</h4>
+                    <p class="text-white/40 text-xs leading-relaxed font-light mb-4">Marathons & Music Festivals</p>
+                    <div class="w-full h-px bg-white/10 mb-4 group-hover:bg-orange-500/50 transition-colors"></div>
+                    <p class="text-[10px] text-white/60 font-medium">Replaces millions of single-use cups dropped in seconds.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] reveal-up hover:border-blue-500/30 group" style="transition-delay: 100ms">
+                    <i data-lucide="plane" class="text-blue-400 w-8 h-8 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-lg font-bold text-white mb-2 uppercase">Hospitality</h4>
+                    <p class="text-white/40 text-xs leading-relaxed font-light mb-4">Airlines & Luxury Hotels</p>
+                    <div class="w-full h-px bg-white/10 mb-4 group-hover:bg-blue-500/50 transition-colors"></div>
+                    <p class="text-[10px] text-white/60 font-medium">Premium, zero-waste in-flight dining and room service.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] reveal-up hover:border-red-500/30 group" style="transition-delay: 200ms">
+                    <i data-lucide="heart-handshake" class="text-red-400 w-8 h-8 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-lg font-bold text-white mb-2 uppercase">Crisis Relief</h4>
+                    <p class="text-white/40 text-xs leading-relaxed font-light mb-4">Emergency Drops & Military</p>
+                    <div class="w-full h-px bg-white/10 mb-4 group-hover:bg-red-500/50 transition-colors"></div>
+                    <p class="text-[10px] text-white/60 font-medium">Hydrating disaster zones without leaving toxic debris behind.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] reveal-up hover:border-aqua-primary/30 group" style="transition-delay: 300ms">
+                    <i data-lucide="briefcase" class="text-aqua-primary w-8 h-8 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-lg font-bold text-white mb-2 uppercase">Everyday</h4>
+                    <p class="text-white/40 text-xs leading-relaxed font-light mb-4">Retail & On-the-Go</p>
+                    <div class="w-full h-px bg-white/10 mb-4 group-hover:bg-aqua-primary/50 transition-colors"></div>
+                    <p class="text-[10px] text-white/60 font-medium">Daily hydration for the eco-conscious consumer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH SPECS (COMPARISON GRID) -->
+    <section id="specs" class="py-20 sm:py-32 px-4 sm:px-6 relative bg-[#010408]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal-up">
+                <p class="section-label mb-4 sm:mb-6">Material Analysis</p>
+                <h3 class="text-4xl sm:text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter">The Unfair <span class="blue-gradient-text">Advantage.</span></h3>
+            </div>
+
+            <div class="overflow-x-auto pb-4 reveal-up border border-white/5 rounded-3xl">
+                <table class="w-full min-w-[600px] text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="p-6 text-white/40 text-xs uppercase tracking-widest font-black">Feature</th>
+                            <th class="p-6 text-white text-lg font-display font-black tracking-tight bg-white/5 border-x border-white/10 w-1/3 text-center">GLOB (Jevah)</th>
+                            <th class="p-6 text-white/60 text-sm font-display font-bold text-center">Standard PET</th>
+                            <th class="p-6 text-white/60 text-sm font-display font-bold text-center">PLA (Bioplastics)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-white/5">
+                            <td class="p-6 text-white/60 font-medium">Biodegradability</td>
+                            <td class="p-6 text-aqua-primary font-bold text-center bg-white/[0.02] border-x border-white/10">4-6 Weeks (Home Compost)</td>
+                            <td class="p-6 text-white/40 text-center">450+ Years</td>
+                            <td class="p-6 text-white/40 text-center">Industrial Facility Only</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-6 text-white/60 font-medium">Edible?</td>
+                            <td class="p-6 text-aqua-primary font-bold text-center bg-white/[0.02] border-x border-white/10">100% Edible & Safe</td>
+                            <td class="p-6 text-red-500 font-bold text-center">Toxic</td>
+                            <td class="p-6 text-red-500 font-bold text-center">Toxic</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-6 text-white/60 font-medium">Microplastic Output</td>
+                            <td class="p-6 text-aqua-primary font-bold text-center bg-white/[0.02] border-x border-white/10">Absolute Zero</td>
+                            <td class="p-6 text-red-500 font-bold text-center">Extremely High</td>
+                            <td class="p-6 text-yellow-500 font-bold text-center">Moderate</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 text-white/60 font-medium">Carbon Footprint</td>
+                            <td class="p-6 text-aqua-primary font-bold text-center bg-white/[0.02] border-x border-white/10">Ultra Low (Seaweed based)</td>
+                            <td class="p-6 text-red-500 font-bold text-center">High (Petroleum based)</td>
+                            <td class="p-6 text-yellow-500 font-bold text-center">Medium (Agricultural land)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -655,6 +850,70 @@
         </div>
     </section>
 
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 sm:py-32 px-4 sm:px-6 relative bg-[#010408]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal-up">
+                <p class="section-label mb-4 sm:mb-6">Questions Answered</p>
+                <h3 class="text-4xl sm:text-5xl md:text-7xl font-display font-black text-white uppercase tracking-tighter">Common <span class="blue-gradient-text">Inquiries.</span></h3>
+            </div>
+            
+            <div class="space-y-4 reveal-up">
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden faq-item cursor-pointer">
+                    <div class="p-6 sm:p-8 flex justify-between items-center bg-white/[0.01] hover:bg-white/[0.03] transition-colors">
+                        <h4 class="text-lg sm:text-xl font-bold text-white">Does it taste like seaweed?</h4>
+                        <i data-lucide="plus" class="text-aqua-primary w-5 h-5 faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <div class="p-6 sm:p-8 pt-0 text-white/50 text-sm leading-relaxed border-t border-white/5">
+                            No. The proprietary extraction process removes the naturally occurring salts and flavors from the alginate. The resulting membrane is entirely tasteless and simply takes on the profile of the water inside.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden faq-item cursor-pointer">
+                    <div class="p-6 sm:p-8 flex justify-between items-center bg-white/[0.01] hover:bg-white/[0.03] transition-colors">
+                        <h4 class="text-lg sm:text-xl font-bold text-white">What is the shelf life of a GLOB?</h4>
+                        <i data-lucide="plus" class="text-aqua-primary w-5 h-5 faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <div class="p-6 sm:p-8 pt-0 text-white/50 text-sm leading-relaxed border-t border-white/5">
+                            Currently, our standard formulation maintains structural integrity and freshness for 3 to 4 weeks when stored in ambient conditions. We are actively developing next-gen formulations to extend this to 6 weeks.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden faq-item cursor-pointer">
+                    <div class="p-6 sm:p-8 flex justify-between items-center bg-white/[0.01] hover:bg-white/[0.03] transition-colors">
+                        <h4 class="text-lg sm:text-xl font-bold text-white">How is it transported hygienically?</h4>
+                        <i data-lucide="plus" class="text-aqua-primary w-5 h-5 faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <div class="p-6 sm:p-8 pt-0 text-white/50 text-sm leading-relaxed border-t border-white/5">
+                            GLOBs are produced with a dual-layer membrane. The outer "peel" acts much like the skin of an orange—it protects the inner content during transit and handling. The user simply peels off the outer layer before consumption. We also transport them in bulk biodegradable crates.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden faq-item cursor-pointer">
+                    <div class="p-6 sm:p-8 flex justify-between items-center bg-white/[0.01] hover:bg-white/[0.03] transition-colors">
+                        <h4 class="text-lg sm:text-xl font-bold text-white">Is it safe to swallow the membrane?</h4>
+                        <i data-lucide="plus" class="text-aqua-primary w-5 h-5 faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <div class="p-6 sm:p-8 pt-0 text-white/50 text-sm leading-relaxed border-t border-white/5">
+                            Absolutely. The inner membrane is 100% organic, vegan, and edible. It is made from brown seaweed extract (alginate) and calcium chloride, both of which are common, safe, FSSAI/FDA-approved food ingredients.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOUNDER SECTION -->
     <section id="founder" class="py-20 sm:py-32 px-4 sm:px-6">
         <div class="max-w-7xl mx-auto">
@@ -674,7 +933,7 @@
                             </p>
                             <div class="pt-6 sm:pt-8 border-t border-white/10">
                                 <h4 class="text-2xl sm:text-3xl font-display font-black text-white">Janvi Patel</h4>
-                                <p class="text-aqua-primary font-black uppercase text-[8px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] mt-2">Visionary & Founder, GLOB</p>
+                                <p class="text-aqua-primary font-black uppercase text-[8px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] mt-2">Visionary & Founder, JEVAH</p>
                             </div>
                         </div>
                     </div>
@@ -711,22 +970,22 @@
                             JEVAH Material Labs is at the forefront of the bio-packaging revolution. We are scaling our proprietary seaweed-polymer extraction process to meet global demand, disrupting the $300B+ plastic packaging industry.
                         </p>
                         
-                        <div class="grid grid-cols-2 gap-4 sm:gap-6 mb-10">
-                            <div class="p-4 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5">
-                                <span class="block text-3xl sm:text-4xl font-display font-black text-white mb-1">$300B+</span>
-                                <span class="text-[9px] font-black text-white/40 uppercase tracking-[0.2em]">Global TAM</span>
+                        <div class="grid grid-cols-2 gap-3 sm:gap-6 mb-10">
+                            <div class="p-3 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5 flex flex-col justify-center">
+                                <span class="block text-2xl sm:text-3xl md:text-4xl font-display font-black text-white mb-1">$300B+</span>
+                                <span class="text-[8px] sm:text-[9px] font-black text-white/40 uppercase tracking-wider sm:tracking-[0.2em] leading-tight">Global TAM</span>
                             </div>
-                            <div class="p-4 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5">
-                                <span class="block text-3xl sm:text-4xl font-display font-black text-white mb-1">94%</span>
-                                <span class="text-[9px] font-black text-white/40 uppercase tracking-[0.2em]">Gross Margin Potential</span>
+                            <div class="p-3 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5 flex flex-col justify-center">
+                                <span class="block text-2xl sm:text-3xl md:text-4xl font-display font-black text-white mb-1">94%</span>
+                                <span class="text-[8px] sm:text-[9px] font-black text-white/40 uppercase tracking-wider sm:tracking-[0.2em] leading-tight">Gross Margin Potential</span>
                             </div>
-                            <div class="p-4 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5">
-                                <span class="block text-3xl sm:text-4xl font-display font-black text-white mb-1">Patent</span>
-                                <span class="text-[9px] font-black text-white/40 uppercase tracking-[0.2em]">Pending Tech</span>
+                            <div class="p-3 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5 flex flex-col justify-center">
+                                <span class="block text-2xl sm:text-3xl md:text-4xl font-display font-black text-white mb-1">Patent</span>
+                                <span class="text-[8px] sm:text-[9px] font-black text-white/40 uppercase tracking-wider sm:tracking-[0.2em] leading-tight">Pending Tech</span>
                             </div>
-                            <div class="p-4 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5">
-                                <span class="block text-3xl sm:text-4xl font-display font-black text-white mb-1">Seed</span>
-                                <span class="text-[9px] font-black text-white/40 uppercase tracking-[0.2em]">Current Funding Round</span>
+                            <div class="p-3 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5 flex flex-col justify-center">
+                                <span class="block text-2xl sm:text-3xl md:text-4xl font-display font-black text-white mb-1">Seed</span>
+                                <span class="text-[8px] sm:text-[9px] font-black text-white/40 uppercase tracking-wider sm:tracking-[0.2em] leading-tight">Current Funding Round</span>
                             </div>
                         </div>
                     </div>
@@ -771,15 +1030,18 @@
                     </p>
 
                     <!-- Social Links -->
-                    <div class="flex gap-4 sm:gap-5 pt-2 sm:pt-4">
-                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
-                            <i data-lucide="linkedin" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                    <div class="flex flex-wrap gap-4 sm:gap-5 pt-2 sm:pt-4">
+                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all text-white hover:text-aqua-primary" title="LinkedIn">
+                            <i data-lucide="linkedin" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
-                            <i data-lucide="instagram" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all text-white hover:text-aqua-primary" title="Instagram">
+                            <i data-lucide="instagram" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all">
-                            <i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                        <a href="mailto:jevah.main@gmail.com" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-aqua-primary/20 transition-all text-white hover:text-aqua-primary" title="Email Us">
+                            <i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </a>
+                        <a href="https://wa.me/919587686203" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-12 sm:h-12 glass-card rounded-xl flex items-center justify-center hover:bg-[#25D366]/20 transition-all group" title="WhatsApp Us">
+                            <svg viewBox="0 0 24 24" class="w-4 h-4 sm:w-5 sm:h-5 fill-white group-hover:fill-[#25D366] transition-colors"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -861,6 +1123,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
+            // Menu Logic
             const toggle = document.getElementById("menuToggle");
             const mobileMenu = document.getElementById("mobileMenu");
             const menuIcon = document.getElementById("menuIcon");
@@ -897,6 +1160,32 @@
                     });
                 });
             }
+
+            // FAQ Accordion Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const content = item.querySelector('.faq-content');
+                    const icon = item.querySelector('.faq-icon');
+                    
+                    // Close all other FAQs
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.faq-content').style.maxHeight = '0px';
+                            otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle current FAQ
+                    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                        content.style.maxHeight = '0px';
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
         });
 
         function initStats() {
